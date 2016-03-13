@@ -1,0 +1,5 @@
+" delimitMate - automatically closes quotes, parenthesis, brackets, etc.
+
+Bundle "raimondi/delimitMate"
+
+" vim:ft=vim

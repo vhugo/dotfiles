@@ -1,0 +1,33 @@
+#compdef dkr
+
+# This is a completion plugin for my helper to use docker on my development
+# environment.
+# Author: Victor Alves (//github.com/vhugo/)
+
+local -a _1st_arguments
+_1st_arguments=(
+  "add":"Add a new container"
+  "build":"Build or rebuild a image for current project"
+  "clean":"Clean all containers and images for current project"
+  "destroy":"Remove a container"
+  "list":"List containers"
+  "restart":"Restart a container"
+)
+
+_arguments '*:: :->command'
+
+__get_containers() {
+  local _app="${PWD##*/}"
+  local _app_grep="^${_app}"
+  local _app_sed="s/^${_app}-//"
+  echo "$(docker ps -a --format='{{.Names}}' \
+     | grep $_app_grep | sed $_app_sed)"
+}
+
+if (( CURRENT == 1 )); then
+  _alternative  "containers:Available containers:($(__get_containers))"
+  _describe -t commands "docker command" _1st_arguments
+  return
+fi
+
+

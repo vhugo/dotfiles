@@ -1,0 +1,5 @@
+" Targets - provides additional text objects
+
+Bundle "wellle/targets.vim"
+
+" vim:ft=vim
