@@ -24,11 +24,27 @@ vnoremap <C-b> :call WrapCurrentWord("bold")<cr>
 vnoremap <C-i> :call WrapCurrentWord("italic")<cr>
 
 function! MarkdownMode()
+  " Goyo 120
+  set background=light
+  colorscheme pencil
+  let g:vimroom_background = 'white'
+  setlocal cursorline
   setlocal spell        " Enable spell checking
-  setlocal nowrap       " Let long lines scroll off
+  setlocal wrap       " Let long lines scroll off
   setlocal linebreak    " Use word boundaries to break lines
-  setlocal textwidth=78
+  setlocal textwidth=80
   setlocal isk-=.       " sh.vim syntax file seems to be setting this...
+
+  call setwinvar(0, '&statusline', '')
+  call settabwinvar(0, 1, '&statusline', '')
+  call settabwinvar(0, 2, '&statusline', '')
+  call settabwinvar(0, 3, '&statusline', '')
+  call settabwinvar(0, 4, '&statusline', '')
+
+  execute "highlight VertSplit ctermbg=15, ctermfg=15"
+  execute "highlight StatusLine ctermbg=15, ctermfg=15"
+  execute "highlight StatusLineNC ctermbg=15, ctermfg=15"
+
   nnoremap <leader>bl :BoldListItems<cr>
   nnoremap <buffer> <leader>ns ]s
   " nnoremap <buffer> <leader>sp ea<C-x><C-s>
@@ -39,7 +55,7 @@ function! MarkdownMode()
   nnoremap <buffer> <leader>bld mm"bciw**b**<esc>`m2l
   nnoremap <buffer> <leader>em mm"bciw*b*<esc>`m2l
   nnoremap <buffer> <cr> :MarkdownAwareGX<cr>
-  nnoremap <buffer> <leader>dp :call system("open -a Deckset <C-r>%")<cr>
+  " nnoremap <buffer> <leader>dp :call system("open -a Deckset <C-r>%")<cr>
   command! BlockQuotify execute "normal! {jvip\<C-v>I> \<ESC>gqip"
   nnoremap <buffer> <leader>gq :BlockQuotify<cr>
   vmap <leader>gq :g/\(^$\n\)\@<=.*/BlockQuotify<cr>

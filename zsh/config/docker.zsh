@@ -291,7 +291,7 @@ dkr() {
   fi
 
  shift 1
-  eval "docker exec $container_name $@"
+  eval "docker exec -ti $container_name $@"
 }
 
 # function dkcleanup() {

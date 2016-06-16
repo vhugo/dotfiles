@@ -72,8 +72,8 @@ set splitbelow
 set splitright
 
 " Help to fix issue with trailing whitespace
-set wrap
-set linebreak
+" set wrap
+" set linebreak
 " note trailing space at end of next line
 set showbreak=>\ \ \ 
 

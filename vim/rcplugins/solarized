@@ -1,0 +1,6 @@
+" Solarized - Colorscheme definition. Precision colorscheme
+
+Bundle "altercation/vim-colors-solarized"
+
+" vim:ft=vim
+
