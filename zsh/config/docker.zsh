@@ -13,7 +13,7 @@ clear
 
 if [ ! -f "${DOCKER_MACHINE}" ] || [ ! -f "${VBOXMANAGE}" ]; then
   echo "Either VirtualBox or Docker Machine are not installed. Please re-run the Toolbox Installer and try again."
-  exit 1
+  return
 fi
 
 "${VBOXMANAGE}" list vms | grep \""${VM}"\" &> /dev/null
