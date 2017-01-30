@@ -24,3 +24,8 @@ alias dkcls='docker ps -a'
 
 ## Rubocop
 alias rcop='$HOME/.rvm/bin/rvm-auto-ruby -S rubocop -c "$HOME/.rubocop.yml"'
+
+## password-store
+alias pc='pass show -c'
+alias pg='pass generate'
+alias pi='pass insert'
