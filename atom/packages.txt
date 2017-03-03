@@ -15,7 +15,6 @@ go-debug@1.1.0
 go-plus@5.2.0
 go-signature-statusbar@1.2.0
 highlight-selected@0.12.0
-html-entities@0.4.0
 hyperclick@0.0.40
 language-asciidoc@1.7.0
 language-docker@1.1.7
