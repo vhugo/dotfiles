@@ -25,11 +25,11 @@
     ]
   "asciidoc-preview":
     compatMode: true
+  "autocomplete-python":
+    useKite: false
   core:
     audioBeep: false
     disabledPackages: [
-      "polymer-snippets"
-      "go-plus"
       "atom-bracket-highlight"
       "welcome"
       "Termrk"
