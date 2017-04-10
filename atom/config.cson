@@ -57,9 +57,7 @@
       runTestsOnSave: false
       runTestsWithShortFlag: false
   "gometalinter-linter": {}
-  linter:
-    errorPanelHeight: 222
-    showErrorPanel: false
+  linter: {}
   "one-dark-ui":
     layoutMode: "Compact"
   welcome:
