@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SUGGESTIONS>
-<show_suggestions value="true"/>
-<transparent value="false"/>
-<default_text_color value="#000000"/>
-<default_bg_color value="#ffffff"/>
-<apps_text_color value=""/>
-<apps_bg_color value="#00897B"/>
-<alias_text_color value=""/>
-<alias_bg_color value="#FF5722"/>
-<cmd_text_color value=""/>
-<cmd_bg_color value="#76FF03"/>
-<song_text_color value=""/>
-<song_bg_color value="#EEFF41"/>
-<contact_text_color value=""/>
-<contact_bg_color value="#64FFDA"/>
-<file_text_color value=""/>
-<file_bg_color value="#03A9F4"/>
-<suggest_alias_default value="true"/>
-<click_to_launch value="true"/>
+<show_suggestions       value="true"/>
+<transparent            value="false"/>
+<suggest_alias_default  value="false"/>
+<click_to_launch        value="true"/>
+<default_text_color     value="#272727"/>
+<default_bg_color       value="#ffffff"/>
+<alias_text_color       value=""/>
+<alias_bg_color         value="#fff4c63d"/>
+<apps_text_color        value=""/>
+<apps_bg_color          value="#ff00a186"/>
+<cmd_text_color         value=""/>
+<cmd_bg_color           value="#ff00af63"/>
+<song_text_color        value=""/>
+<song_bg_color          value="#EEFF41"/>
+<contact_text_color     value=""/>
+<contact_bg_color       value="#64FFDA"/>
+<file_text_color        value=""/>
+<file_bg_color          value="#03A9F4"/>
 </SUGGESTIONS>
