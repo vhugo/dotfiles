@@ -1,0 +1,68 @@
+// do not edit the settingsVersion property!
+settingsVersion=89
+
+// when you are ready go back to t-ui and type restart to see changes
+
+// skin
+deviceColor=#ff9800
+inputColor=#00a186
+outputColor=#eeeeee
+backgroundColor=#272727
+useSystemFont=false
+fontSize=12
+ramColor=#00a186
+inputFieldBottom=true
+username=vhugo
+showUsername=true
+showSubmit=true
+deviceName=space
+showRam=true
+showDevice=false
+showToolbar=false
+showSessionInfoWhenInputEmpty=true
+linuxAppearance=true
+showPathInSessionInfo=true
+showDeviceNameInSessionInfo=false
+
+// suggestions
+suggestionTextColor=#272727
+transparentSuggestions=false
+multicolorSuggestions=true
+executeOnSuggestionClick=true
+aliasSuggestionBg=#f4c63d
+appSuggestionBg=#00a186
+commandSuggestionsBg=#00af63
+songSuggestionBg=#ffEEFF41
+contactSuggestionBg=#ff64FFDA
+fileSuggestionBg=#ff03A9F4
+defaultSuggestionBg=#ffFFFFFF
+
+// rates (change values if you want to show less or more result in suggestions)
+minAppsRate=4
+minFilesRate=2
+minSongsRate=4
+minContactsRate=4
+minCommandsRate=4
+
+// pre-load
+useSystemWallpaper=false
+fullscreen=false
+keepAliveWithNotification=true
+openKeyboardOnStart=false
+
+// music
+fromMediastore=true
+playRandom=true
+songsFolder=/sdcard/Music
+
+// others
+closeOnDbTap=true
+doubleTapSU=true
+showSuggestions=true
+enableEnterInPhysicalKeyboard=false
+compareStringForApps=false
+showDonationMessage=false
+showAliasValue=true
+
+// commands
+defaultSearch=-g

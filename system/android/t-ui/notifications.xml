@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NOTIFICATIONS>
+<show_notifications value="enabled"/>
+<default_app_state value="true"/>
+<default_color value="#00FF00"/>
+<notification_format value="[%t] %pkg: %ttl --- %txt"/>
+</NOTIFICATIONS>

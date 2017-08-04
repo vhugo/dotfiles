@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UI>
+<show_enter_button value="true"/>
+<system_font value="false"/>
+<font_size value="15"/>
+<input_bottom value="true"/>
+<show_ram value="true"/>
+<show_device_name value="true"/>
+<show_battery value="true"/>
+<show_storage_info value="true"/>
+<enable_battery_status value="true"/>
+<show_time value="true"/>
+<username value="user"/>
+<deviceName value=""/>
+<system_wallpaper value="false"/>
+<fullscreen value="false"/>
+<device_index value="0"/>
+<ram_index value="1"/>
+<battery_index value="2"/>
+<time_index value="3"/>
+<storage_index value="4"/>
+<input_prefix value="$"/>
+<input_root_prefix value="#"/>
+<left_margin_mm value="0"/>
+<right_margin_mm value="0"/>
+<top_margin_mm value="0"/>
+<bottom_margin_mm value="0"/>
+</UI>

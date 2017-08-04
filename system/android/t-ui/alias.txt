@@ -1,0 +1,10 @@
+// do not insert random spaces!
+
+root=cd /
+st=settings
+mp3=mv Downloads/*.mp3 Music
+pdf=mv Downloads/*.pdf Docs
+c=clear
+l=ls
+home=cd /storage/emulated/0
+e=tuixt
