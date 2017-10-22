@@ -3,7 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 export ZSH_THEME="vat"
 export ZSH_CUSTOM=$HOME/.zsh/
 export DISABLE_AUTO_UPDATE="true"
-plugins=(zsh-syntax-highlighting git docker dkr)
+plugins=(zsh-syntax-highlighting git docker td)
 
 # load oh-my-zsh
 source $ZSH/oh-my-zsh.sh

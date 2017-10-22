@@ -21,8 +21,8 @@
 <battery_index         value="4"/>
 <input_prefix          value="$"/>
 <input_root_prefix     value="#"/>
-<left_margin_mm        value="0"/>
+<left_margin_mm        value="2"/>
 <right_margin_mm       value="0"/>
-<top_margin_mm         value="0"/>
+<top_margin_mm         value="1"/>
 <bottom_margin_mm      value="0"/>
 </UI>
