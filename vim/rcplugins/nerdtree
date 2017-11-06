@@ -1,0 +1,7 @@
+" NERDTree - A tree explorer plugin for vim.
+
+Plug 'scrooloose/nerdtree'
+
+map <leader>b :NERDTreeToggle<CR>
+
+" vim:ft=vim

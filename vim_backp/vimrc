@@ -9,12 +9,13 @@
 " configurations into individual files organized by functionality. These
 " live in ~/.vim/rcfiles.
 "
-" Using vim-plug to manage plugins
-" 
+" I am using Vundle to manage my plugins, which is configured below
+" Each plugin is configured in its own file in ~/.vim/rcplugins
+"
 " [1]  https://github.com/christoomey/dotfiles "Chris Toomey"
 "-----------------------------------------------------------------------------
 
-" Need to set the leader before defining any leader mappings
+" Want to set this before any others
 let mapleader = "\<Space>"
 
 function! s:SourceConfigFilesIn(directory)
@@ -26,8 +27,19 @@ function! s:SourceConfigFilesIn(directory)
   endfor
 endfunction
 
-call plug#begin('~/.vim/bundle')
-call s:SourceConfigFilesIn('rcplugins')
-call plug#end()
+" Setup Vundle to manage my bundles
+"-----------------------------------
+filetype off " required!
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
+" Plugins are each listed in their own file. Loop and source ftw
+"----------------------------------------------------------------
+call s:SourceConfigFilesIn('rcplugins')
+
+filetype plugin indent on " required!
+syntax on
+
+" Vimrc is split accross multiple files, so loop over and source each
+"---------------------------------------------------------------------
 call s:SourceConfigFilesIn('rcfiles')

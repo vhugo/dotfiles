@@ -1,0 +1,32 @@
+" Tabs and windows configurations
+
+" automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd =
+
+for tab_number in [1,2,3,4, 5, 6]
+  execute 'map <silent> <C-w>' . tab_number . ' :tabnext ' . tab_number . '<cr>'
+endfor
+
+" Open/close tabs
+nnoremap <leader>wn :tabnew<cr>
+nnoremap <leader>ct :tabclose<cr>
+
+" Window navigation
+" nmap <silent> <A-Up> :wincmd k<CR>
+" nmap <silent> <A-Down> :wincmd j<CR>
+" nmap <silent> <A-Left> :wincmd h<CR>
+" nmap <silent> <A-Right> :wincmd l<CR>
+
+" zoom a vim pane, <C-w>= to re-balance
+nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>= :wincmd =<cr>
+
+" Open new split panes to right and bottom
+set splitbelow
+set splitright
+
+" Quickly open a second window to view files side by side
+nmap <leader>hs :split<CR>
+nmap <leader>vs :vsplit<CR>
+
+" vim:ft=vim

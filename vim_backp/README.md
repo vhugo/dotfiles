@@ -26,3 +26,15 @@ cd /d "\Program Files\Vim"
 mklink /h _vimrc %USERPROFILE%\code\dotfiles\vim\windows_vimrc
 REM Now open gVim and run :BundleInstall<cr>
 ```
+
+## Reference
+
+Leader space
+
+<leader>vp           vertical split
+<leader> 
+
+<leader>-            zoom in (panel)
+<leader>=            zoom out (split)
+
+

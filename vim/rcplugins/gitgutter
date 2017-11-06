@@ -1,5 +1,5 @@
-" GitGutter - shows a git diff in the gutter
+" Gitgutter
 
-Bundle "airblade/vim-gitgutter"
+Plug 'airblade/vim-gitgutter'
 
-"vim:ft=vim
+" vim:ft=vim

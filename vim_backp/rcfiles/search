@@ -1,0 +1,8 @@
+" Search configurations
+"------------------------
+set hlsearch                    " highlight searches, map below to clear
+set incsearch                   " do incremental searching
+set ignorecase                  " Case insensitive...
+set smartcase                   " ...except if you use UCase
+
+" vim:ft=vim

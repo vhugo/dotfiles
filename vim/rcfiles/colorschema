@@ -1,0 +1,10 @@
+" Color scheme
+" ------------
+
+let g:lightline = {
+\ 'colorscheme': 'jellybeans',
+\ }
+
+colorscheme jellybeans
+
+" vim:ft=vim

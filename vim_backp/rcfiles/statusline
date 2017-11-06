@@ -3,7 +3,7 @@
 
 " For general info on statusline, start with the :h, then see
 " http://got-ravings.blogspot.com/2008/08/vim-pr0n-making-statuslines-that-own.html
-" NOTE: NSFW, but very good overview of statusling configuration
+" NOTE: NSFW, but good overview of statusling configuration
 
 set laststatus=2 " Always show the statusline
 
@@ -17,16 +17,16 @@ set statusline= " Clear the statusline for vimrc reloads
 set stl=%*                       " Normal statusline highlight
 set stl+=%{InsertSpace()}        " Put a leading space in
 
-set stl+=%1* 				     " Red highlight
+set stl+=%1* 				             " Red highlight
 set stl+=%{HasPaste()}           " Red show paste
-set stl+=%*                      " Return to normal stl hilight
+set stl+=%*                      " Return to normal stl highlight
 
 set stl+=%t                      " Filename
 
-set stl+=%2* 				     " Red highlight
+set stl+=%2* 				             " Red highlight
 set stl+=%m                      " Modified flag
 
-set stl+=%*                      " Return to normal stl hilight
+set stl+=%*                      " Return to normal stl highlight
 set stl+=%r                      " Readonly flag
 set stl+=%h                      " Help file flag
 
@@ -40,7 +40,7 @@ set stl+=\ \ Line:%l/%L          " Line # / total lines
 set stl+=\ \ %P%{InsertSpace()}  " Single space buffer
 
 " set stl+=%2* 				             " Yello highlight
-" set stl+=%{ConflictedVersion()}           " Red show paste
+" set stl+=%{ConflictedVersion()}  " Red show paste
 " set stl+=%*                      " Return to normal stl hilight
 
 
@@ -63,11 +63,6 @@ function! HasPaste()
     else
         return ''
     endif
-endfunction
-
-function! CurDir()
-    let curdir = substitute(getcwd(), '/Users/nation/', "~/", "g")
-    return curdir
 endfunction
 
 " vim:ft=vim

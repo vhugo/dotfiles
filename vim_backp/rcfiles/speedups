@@ -58,7 +58,7 @@ nnoremap <leader>; :
 vnoremap <leader>; :
 
 " Quickly open a second window to view files side by side
-nmap <LEADER>vn :vsplit<CR>
+nmap <LEADER>hs :split<CR>
 nmap <LEADER>vs :vsplit<CR>
 
 " Move one line at a time, aka 'fine ajdustment'

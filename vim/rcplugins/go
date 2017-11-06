@@ -1,0 +1,6 @@
+" Go - Go development plugin for Vim 
+"-------------------------------------------------------------------
+
+Plug 'fatih/vim-go', { 'tag': '*' }
+
+" vim:ft=vim

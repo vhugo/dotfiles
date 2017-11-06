@@ -1,0 +1,40 @@
+" GUI
+" ---
+
+if has('gui_running')
+    set guioptions-=r "Hide the right side scrollbar
+    set guioptions-=L "Hide the left side scrollbar
+    set guioptions-=T "Hide toolbars...this is vim for craps sake
+    set guioptions-=m "Hide the menu, see above
+
+    " Size and position the window well (only perform on startup)
+    if !exists('g:vimrc_loaded')
+        set columns=85
+        set lines=999
+        winpos 999 5
+    endif
+
+    " Hightlight the current row. Index-guide plugin covers columns
+    set cursorline
+
+    " MacVim is very pretty
+    if has('gui_macvim')
+        " set transparency=8
+
+        " Fullscreen options
+        set fuoptions=maxvert
+        " au GUIEnter * set fullscreen
+    endif
+
+    " Set a pretty font
+    if has('win32')
+        set guifont=Consolas:h10
+    elseif has('mac')
+        if !exists('g:vimrc_loaded')
+          set guifont=Menlo:h18
+        endif
+    endif
+else
+    set nocursorline nocursorcolumn
+endif
+" vim:ft=vim
