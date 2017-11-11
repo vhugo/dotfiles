@@ -1,0 +1,22 @@
+" Session configuration
+" ----------------------
+
+let g:sessionfile = $HOME . '/.vim/sessions/' . expand('%:p:h:t') .  '.vim'
+
+function! MakeSession()
+  exe 'mksession! ' . g:sessionfile
+endfunction
+
+function! LoadSession()
+  if (filereadable(g:sessionfile))
+    exe 'source ' g:sessionfile
+  else
+    echo "No session loaded."
+  endif
+  NERDTree
+endfunction
+
+" au VimEnter * nested :call LoadSession()
+" au VimLeave * :call MakeSession()
+
+" vim:ft=vim

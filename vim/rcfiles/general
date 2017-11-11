@@ -1,8 +1,11 @@
 " General Vim Settings
 " --------------------
 
+set nocompatible
+filetype off
 filetype plugin indent on
 
+set ttyfast          " Indicates a fast terminal connection
 set backspace=2      " Backspace deletes like most programs in insert mode
 set nobackup
 set nowritebackup
@@ -11,15 +14,26 @@ set history=50
 set ruler            " show the cursor position all the time
 set showcmd          " display incomplete commands
 set incsearch        " do incremental searching
+set hlsearch         " highlight found searches
 set laststatus=2     " Always display the status line
-set autowrite        " Automatically :write before running commands
+set noerrorbells     " No beeps
 set formatoptions-=t " Don't auto-break long lines (re-enable this for prose)
+set autoindent
+set autowrite
+set secure                      " Limit what modelines and autocmds can do
+set lazyredraw                  " Don't update while executing macros
 
 " Softtabs, 2 spaces
-set tabstop=2
-set shiftwidth=2
+set tabstop=2                   " Two spaces per tab as default
+set shiftwidth=2                "     then override with per filteype
+set softtabstop=2               "     specific settings via autocmd
 set shiftround
 set expandtab
+
+set hidden       " Don't require saving before closing a buffer
+
+" Set modeline to 1 to allow rcfiles to be recognized as vim files
+set modelines=1
 
 " Display extra whitespace
 " set list listchars=tab:»·,trail:·,nbsp:·
@@ -36,20 +50,25 @@ set relativenumber
 " shell for syntax highlighting purposes.
 let g:is_posix = 1
 
+" Make it obvious where 80 characters is
+set textwidth=80
+set colorcolumn=+1,+2,+3,+4
+set nowrap
+
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
-set spellfile=$HOME/.vim-spell-en.utf-8.add
+" set spellfile=$HOME/.vim-spell-en.utf-8.add
 
 " Autocomplete with dictionary words when spell check is on
-set complete+=kspell
+" set complete+=kspell
 
 " Always use vertical diffs
-set diffopt+=vertical
-
-" Don't require saving before closing a buffer
-set hidden
+" set diffopt+=vertical
 
 " Automatically change the current directory, unless you're in /tmp
-autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
+" autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
+
+" After saving make sure syntax is  enabled
+autocmd BufWritePost * syntax enable
 
 " vim:ft=vim

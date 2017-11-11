@@ -2,6 +2,26 @@
 
 Plug 'scrooloose/nerdtree'
 
-map <leader>b :NERDTreeToggle<CR>
+" General properties
+let NERDTreeDirArrows=1
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI=1
+let NERDTreeIgnore=['\.pyc$', '^\.git$']
+let NERDTreeWinSize = 35
+
+" Make sure that when NT root is changed, Vim's pwd is also updated
+let NERDTreeChDirMode = 2
+let NERDTreeShowLineNumbers = 1
+let NERDTreeAutoCenter = 1
+
+" Close NERDTree to avoid save it in session
+autocmd VimLeavePre * NERDTreeClose
+
+" Open NERDTree on startup, when no file has been specified
+autocmd VimEnter * if !argc() | NERDTree | endif
+
+" Toogle on/off
+" map <leader>kb :NERDTreeToggle<CR>
+map <c-k><c-b> :NERDTreeToggle<CR>
 
 " vim:ft=vim

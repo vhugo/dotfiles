@@ -25,15 +25,35 @@
     ]
   "asciidoc-preview":
     compatMode: true
+  "atom-material-ui":
+    colors: {}
   "autocomplete-python":
     useKite: false
   core:
     audioBeep: false
+    automaticallyUpdate: false
     disabledPackages: [
       "atom-bracket-highlight"
       "welcome"
       "Termrk"
       "markdown-preview-plus"
+      "minimap"
+      "platformio-ide"
+      "platformio-ide-debugger"
+      "asciidoc-preview"
+    ]
+    ignoredNames: [
+      ".git"
+      ".hg"
+      ".svn"
+      ".DS_Store"
+      "._*"
+      "Thumbs.db"
+      "desktop.ini"
+      ".pioenvs"
+      ".piolibdeps"
+      ".clang_complete"
+      ".gcc-flags.json"
     ]
     openEmptyEditorOnStart: false
     projectHome: "/Users/victor.alves/work"
@@ -44,21 +64,61 @@
     ]
   editor:
     autoIndent: false
-    fontSize: 11
+    fontSize: 10
   "exception-reporting":
     userId: "efde1eeb-4d0e-319b-5937-233f5d2b20fd"
+  "file-icons":
+    coloured: false
   "git-plus":
     general:
       _analyticsUserId: "041b314c-fa95-44b8-bc79-ed2e47ccbf7c"
   "go-config": {}
   "go-plus":
+    lint: {}
+    panel:
+      currentHeight: "11.666666666666666vh"
+      displayMode: "closed"
+      fontSize: "0.9em"
     panelDisplayMode: "closed"
     test:
       runTestsOnSave: false
+      runTestsWithCoverage: false
       runTestsWithShortFlag: false
   "gometalinter-linter": {}
   linter: {}
-  "one-dark-ui":
-    layoutMode: "Compact"
+  "linter-rubocop":
+    disableWhenNoConfigFile: true
+  "linter-ui-default":
+    panelHeight: 69
+    showPanel: true
+    useBusySignal: false
+  minimap:
+    displayCodeHighlights: false
+  "one-dark-ui": {}
+  "split-diff":
+    diffWords: true
+    ignoreWhitespace: true
+    leftEditorColor: "red"
+    rightEditorColor: "green"
+    scrollSyncType: "Vertical + Horizontal"
+  "tool-bar":
+    position: "Left"
+    visible: false
+  "tree-view":
+    hideIgnoredNames: true
+  "vim-mode-plus":
+    notifiedCoffeeScriptNoLongerSupportedToExtendVMP: true
   welcome:
     showOnStartup: false
+".go.source":
+  editor:
+    autoIndent: true
+".gohtml.html.text":
+  editor:
+    autoIndent: true
+".gotemplate.source":
+  editor:
+    autoIndent: true
+".haml.text":
+  editor:
+    autoIndent: true

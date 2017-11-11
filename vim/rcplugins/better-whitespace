@@ -2,6 +2,6 @@
 
 Plug 'ntpeters/vim-better-whitespace'
 
-nnoremap <leader>wht :StripWhitespace<cr>:w<cr>
+autocmd BufEnter * EnableStripWhitespaceOnSave 
 
 " vim:ft=vim

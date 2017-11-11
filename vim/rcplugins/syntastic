@@ -1,0 +1,9 @@
+" Syntastic - Syntax checking hacks for vim
+
+" Plug 'vim-syntastic/syntastic'
+
+" let g:syntastic_go_checkers = ['govet', 'errcheck', 'go']
+
+" vim:ft=vim
+
+

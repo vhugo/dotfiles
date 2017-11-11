@@ -1,0 +1,14 @@
+" Shortcuts
+" ---------
+
+" Fast saving
+map <leader>w :w<CR>
+
+" Quick quit / quit all
+map <leader>qq :qall<CR>
+map <leader>qw :q<CR>
+
+" quicker acess to commands
+map ; :
+
+" vim:ft=vim
