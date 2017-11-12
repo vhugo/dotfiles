@@ -5,7 +5,8 @@
 " http://got-ravings.blogspot.com/2008/08/vim-pr0n-making-statuslines-that-own.html
 " NOTE: NSFW, but good overview of statusling configuration
 
-set laststatus=2 " Always show the statusline
+set laststatus=2    " Always show the statusline
+set encoding=utf8   " Set encoding to UTF-8 to show glyphs
 
 "define 3 custom highlight groups
 hi User1 ctermbg=lightgray ctermfg=yellow guifg=orange guibg=#444444 cterm=bold gui=bold
