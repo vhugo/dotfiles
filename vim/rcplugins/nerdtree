@@ -11,7 +11,7 @@ let NERDTreeWinSize = 35
 
 " Make sure that when NT root is changed, Vim's pwd is also updated
 let NERDTreeChDirMode = 2
-let NERDTreeShowLineNumbers = 1
+let NERDTreeShowLineNumbers = 0
 let NERDTreeAutoCenter = 1
 
 " Close NERDTree to avoid save it in session

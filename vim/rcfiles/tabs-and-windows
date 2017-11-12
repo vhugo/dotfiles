@@ -1,5 +1,7 @@
 " Tabs and windows configurations
 
+set fillchars=vert:\│     " Better vertical separator
+
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
 
