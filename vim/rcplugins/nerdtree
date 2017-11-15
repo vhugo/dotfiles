@@ -22,6 +22,6 @@ autocmd VimEnter * if !argc() | NERDTree | endif
 
 " Toogle on/off
 " map <leader>kb :NERDTreeToggle<CR>
-map <c-k><c-b> :NERDTreeToggle<CR>
+map <leader>vv :NERDTreeToggle<CR>
 
 " vim:ft=vim

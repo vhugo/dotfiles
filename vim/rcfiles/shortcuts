@@ -2,7 +2,7 @@
 " ---------
 
 " Fast saving
-map <leader>w :w<CR>
+map <leader>ww <ESC>:w<CR>
 
 " Quick quit / quit all
 map <leader>qq :qall<CR>
