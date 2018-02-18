@@ -1,0 +1,4 @@
+" GDScript - Godot script development setup for Vim
+"-------------------------------------------------------------------
+
+Plug 'quabug/vim-gdscript'
