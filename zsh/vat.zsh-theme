@@ -1,5 +1,6 @@
-local ret_status="%(?:%{$FG[066]%}➜ :%{$FG[197]%}➜ %s)"
-PROMPT='${ret_status} %{$FG[237]%}%n%{$reset_color%}%{$FG[066]%}@%m%{$reset_color%}%{$fg_bold[green]%}%p %{$FG[093]%}%c%{$reset_color%} $(git_super_status)%{$fg_bold[blue]%} % %{$reset_color%}'
+local ret_status="%B%(?:%{$FG[066]%}> :%{$FG[197]%}✕ %s)%b"
+PROMPT='%{$FG[237]%}[%{$FG[242]%}%h%{$FG[237]%}] %D{%Y%m%f.%H:%M:%S}%{$reset_color%} %{$FG[093]%}%/%{$reset_color%} $(git_super_status)%{$fg_bold[blue]%} % %{$reset_color%}
+${ret_status}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="b:"
 ZSH_THEME_GIT_PROMPT_SUFFIX=")"

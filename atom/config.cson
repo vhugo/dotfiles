@@ -25,6 +25,11 @@
     ]
   "asciidoc-preview":
     compatMode: true
+  "atom-ide-ui":
+    "atom-ide-code-format":
+      formatOnSave: true
+    "atom-ide-terminal":
+      fontFamily: "Meslo LG S for Powerline"
   "atom-material-ui":
     colors: {}
   "autocomplete-python":
@@ -64,6 +69,7 @@
     ]
   editor:
     autoIndent: false
+    fontFamily: "Meslo LG S for Powerline"
     fontSize: 10
   "exception-reporting":
     userId: "efde1eeb-4d0e-319b-5937-233f5d2b20fd"

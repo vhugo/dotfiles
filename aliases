@@ -13,19 +13,14 @@ alias sz='source ~/.zshrc'
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
 
-# Nginx command
-alias nginx_start='sudo launchctl load $HOME/Library/LaunchAgents/homebrew.mxcl.nginx.plist'
-alias nginx_stop='sudo launchctl unload $HOME/Library/LaunchAgents/homebrew.mxcl.nginx.plist'
-alias nginx_restart='nginx_stop && nginx_start;'
-
-# Docker
-alias dkcl='docker ps'
-alias dkcls='docker ps -a'
-
-## Rubocop
-alias rcop='$HOME/.rvm/bin/rvm-auto-ruby -S rubocop -c "$HOME/.rubocop.yml"'
-
 ## password-store
 alias pc='pass show -c'
 alias pg='pass generate'
 alias pi='pass insert'
+
+# go gopath
+alias cdgo='cd $GOPATH'
+
+# docker and docker-compose
+alias dkc=docker-compose
+alias dkr=docker
