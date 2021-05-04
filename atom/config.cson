@@ -46,6 +46,8 @@
       "platformio-ide"
       "platformio-ide-debugger"
       "asciidoc-preview"
+      "linter"
+      "linter-rubocop"
     ]
     ignoredNames: [
       ".git"
@@ -75,15 +77,18 @@
     userId: "efde1eeb-4d0e-319b-5937-233f5d2b20fd"
   "file-icons":
     coloured: false
+  "fuzzy-finder": {}
   "git-plus":
     general:
       _analyticsUserId: "041b314c-fa95-44b8-bc79-ed2e47ccbf7c"
   "go-config": {}
   "go-plus":
+    config: {}
     lint: {}
     panel:
       currentHeight: "11.666666666666666vh"
       displayMode: "closed"
+      focusOnFailure: false
       fontSize: "0.9em"
     panelDisplayMode: "closed"
     test:
@@ -95,7 +100,7 @@
   "linter-rubocop":
     disableWhenNoConfigFile: true
   "linter-ui-default":
-    panelHeight: 69
+    panelHeight: 300
     showPanel: true
     useBusySignal: false
   minimap:
@@ -112,8 +117,7 @@
     visible: false
   "tree-view":
     hideIgnoredNames: true
-  "vim-mode-plus":
-    notifiedCoffeeScriptNoLongerSupportedToExtendVMP: true
+  "vim-mode-plus": {}
   welcome:
     showOnStartup: false
 ".go.source":
