@@ -1,0 +1,3 @@
+autocmd BufRead,BufNewFile *.jrnl setlocal spell wrap linebreak
+
+" vim:ft=vim
