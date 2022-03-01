@@ -1,0 +1,30 @@
+colors:
+  body: none
+  date: none
+  tags: none
+  title: none
+default_hour: 9
+default_minute: 0
+editor: vim
+encrypt: false
+highlight: true
+indent_character: '|'
+journals:
+  default:
+    journal: /Users/victor-alves/private/jrnl/default
+    display_format: pretty
+  work:
+    journal: /Users/victor-alves/private/jrnl/work
+    display_format: pretty
+  tech:
+    journal: /Users/victor-alves/private/jrnl/tech
+    display_format: pretty
+  ideas:
+    journal: /Users/victor-alves/private/jrnl/ideas
+    display_format: pretty
+  quotes: /Users/victor-alves/private/jrnl/quotes.txt
+linewrap: 79
+tagsymbols: '#@'
+template: false
+timeformat: '%Y-%m-%d %H:%M'
+version: v2.8.4
