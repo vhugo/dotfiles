@@ -7,7 +7,7 @@ alias mkdir="mkdir -p"
 
 alias e="$EDITOR"
 alias v="$VISUAL"
-alias ez='vim ~/.zshrc'
+alias ez='nvim ~/.zshrc'
 alias sz='source ~/.zshrc'
 
 # Pretty print the path
@@ -24,3 +24,5 @@ alias cdgo='cd $GOPATH'
 # docker and docker-compose
 alias dkc=docker-compose
 alias dkr=docker
+
+alias left='npm start --prefix=$HOME/.bin/Left/desktop/'

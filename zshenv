@@ -5,5 +5,5 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 export MYSQLBIN=/usr/local/opt/mysql-client/bin
 export PATH=$PATH:$MYSQLBIN
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR=$VISUAL
