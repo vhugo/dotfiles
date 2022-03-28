@@ -12,8 +12,21 @@ tkr-search(){
   grep -i $@ $TKR_HOME/*/*.md 
 }
 
+tkr-devlog-template(){
+  $EDITOR $TKR_HOME/devlog/devlog-template.md
+}
+
 tkr-devlog(){
-  $EDITOR $TKR_HOME/devlog/devlog-$(date '+%Y%m%d').md
+  local devlog_file=$TKR_HOME/devlog/devlog-$(date '+%Y%m%d').md
+  local devlog_template=$TKR_HOME/devlog/devlog-template.md
+
+  if [ ! -f  $devlog_file ]; then
+    local template="$devlog_template | :%s/_DATE_HERE_/$(date +'%Y.%m.%d %a')/g" 
+    echo $template | xargs -I @ $EDITOR +':r @' $devlog_file
+    return
+  fi
+
+  echo $TKR_HOME | xargs -I @ $EDITOR +':lcd @' $devlog_file
 }
 
 tkr-okr(){
@@ -30,7 +43,7 @@ tkr-todo(){
     cp $previous $TKR_HOME/planning/$todo_file
   fi
 
-  $EDITOR $TKR_HOME/planning/$todo_file
+  echo $TKR_HOME | xargs -I @ $EDITOR +':lcd @' $TKR_HOME/planning/$todo_file
 }
 
 tkr-backlog(){
@@ -57,6 +70,21 @@ tkr-gamedev(){
 # microgamedev: microgame under development.
 tkr-microgamedev(){
   $EDITOR $TKR_HOME/planning/microgamedev-dot-detective.md
+}
+
+tkr-microgamedev-template(){
+  $EDITOR $TKR_HOME/planning/microgamedev-template.md
+}
+
+tkr-microgamedev-new(){
+  local project_name=$(_sanitize_filename $@)
+  local template="$TKR_HOME/planning/microgamedev-template.md | :%s/_DATE_HERE_/$(date +'%Y.%m.%d %a')/g | :%s/_PROJECT_TITLE_/$@/"
+
+  echo $template | xargs -I @ $EDITOR +':r @' $TKR_HOME/planning/microgamedev-$project_name.md
+}
+
+_sanitize_filename(){
+  echo $@ | sed -e 's/[^[:alnum:]]/-/g' | tr -s '-' | tr A-Z a-z
 }
 
 _gitcmdshare(){
