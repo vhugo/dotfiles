@@ -1,8 +1,0 @@
-" choosewin
-
-Plug 't9md/vim-choosewin'
-
-" invokth '-'
-nmap - <Plug>(choosewin)
-
-" vim:ft=vim

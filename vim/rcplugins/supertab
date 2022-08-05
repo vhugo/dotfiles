@@ -1,8 +1,0 @@
-" SuperTab - Auto complete with tab
-
-Plug 'ervandew/supertab'
-
-" trigger gocode or simple text completion, based on current context
-let g:SuperTabDefaultCompletionType = "context"
-
-" vim:ft=vim

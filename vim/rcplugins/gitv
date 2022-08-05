@@ -1,5 +1,0 @@
-" Gitv
-
-Plug 'gregsexton/gitv', {'on': ['Gitv']}
-
-" vim:ft=vim
