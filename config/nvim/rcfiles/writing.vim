@@ -1,7 +1,9 @@
 " Spell and Grammar check
-let g:grammarous#default_comments_only_filetypes " Check only comments when working on code
 let g:grammarous#show_first_error=1              " Show error immediately
 let g:grammarous#enabled_rules = {'*' : ['PASSIVE_VOICE']} " Enable passive voice in all filetypes
+let g:grammarous#default_comments_only_filetypes = {
+            \ '*' : 1, 'help' : 0, 'markdown' : 0,
+            \ }
 
 " Markdown
 " Setup spell checking, and use <Ctrl>s to open spelling completion menu
