@@ -7,6 +7,6 @@ function g --wraps git --description 'alias g=git'
   git $argv
 end
 
-function ga --wraps git add --description 'alias ga=git add'
+function ga --wraps "git add" --description 'alias ga=git add'
   git add $argv
 end
