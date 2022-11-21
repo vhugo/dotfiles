@@ -1,5 +1,0 @@
-" tcomment - Allows for easy commenting of code
-
-Bundle "tomtom/tcomment_vim"
-
-" vim:ft=vim
