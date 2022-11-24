@@ -18,8 +18,8 @@ inoremap <expr> <C-k> ((pumvisible())?("\<C-p>"):("\<C-x><c-k>"))
 " Chadtree toggle
 nnoremap <leader>v <cmd>CHADopen<cr>
 
-" Golang development
-nnoremap <leader>gc <cmd>GoCoverageToggle<cr>
-nnoremap <leader>gt <cmd>GoTestFunc<cr>
-
+autocmd FileType go nmap <leader>gt <cmd>:GoTestFunc<cr>
+autocmd FileType go nmap <leader>gc <cmd>:GoCoverageToggle<cr>
+autocmd FileType go nmap <leader>tt <cmd>:GoTestFunc<cr>:wincmd h<cr>:GoCoverageClear<cr>:GoCoverage<cr>:wincmd l<cr><esc>
+autocmd FileType go nmap <leader>ot <cmd>:wincmd v<cr>:e %:p:r_test.go<cr><esc>
 
