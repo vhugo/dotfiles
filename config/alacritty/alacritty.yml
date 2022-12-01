@@ -1,21 +1,18 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
-
-# Any items in the `env` entry below will be added as
-# environment variables. Some entries may override variables
+# Any items in the `env` entry below will be added a
+# environment variables. Some entries may override variable
 # set by alacritty itself.
 #env:
   # TERM variable
   #
   # This value is used to set the `$TERM` environment variable for
   # each instance of Alacritty. If it is not present, alacritty will
-  # check the local terminfo database and use `alacritty` if it is
+  # check the local terminfo database and use `alacritty` if it i
   # available, otherwise `xterm-256color` is used.
   #TERM: xterm-256color
-
 window:
   # Background opacity
   opacity: 0.9
-
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -23,7 +20,6 @@ window:
   dimensions:
     columns: 0
     lines: 0
-
   # Window position (changes require restart)
   #
   # Specified in number of pixels.
@@ -31,7 +27,6 @@ window:
   #position:
   #  x: 0
   #  y: 0
-
   # Window padding (changes require restart)
   #
   # Blank space added around the window in pixels. This padding is scaled
@@ -39,21 +34,18 @@ window:
   padding:
     x: 10
     y: 10
-
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: false
-
-  # Window decorations
+  # Window decoration
   #
   # Values for `decorations`:
   #     - full: Borders and title bar
   #     - none: Neither borders nor title bar
   #
   # Values for `decorations` (macOS only):
-  #     - transparent: Title bar, transparent background and title bar buttons
-  #     - buttonless: Title bar, transparent background, but no title bar buttons
+  #     - transparent: Title bar, transparent background and title bar button
+  #     - buttonless: Title bar, transparent background, but no title bar button
   decorations: full
-
   # Startup Mode (changes require restart)
   #
   # Values for `startup_mode`:
@@ -64,29 +56,24 @@ window:
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
   startup_mode: Windowed
-
   # Window class (Linux only):
   class:
     # Application instance name
     instance: Alacritty
-    # General application class
+    # General application cla
     general: Alacritty
-
   # GTK theme variant (Linux only)
   #
   # Override the variant of the GTK theme. Commonly supported values are `dark` and `light`.
   # Set this to `None` to use the default theme variant.
   gtk_theme_variant: None
-
 scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
   history: 10000
-
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).
   multiplier: 3
-
   # Faux Scrolling
   #
   # The `faux_multiplier` setting controls the number of lines the terminal
@@ -95,10 +82,8 @@ scrolling:
   #
   # Specifying `0` will disable faux scrolling.
   faux_multiplier: 3
-
   # Scroll to the bottom when new text is written to the terminal.
   auto_scroll: false
-
 # Spaces per Tab (changes require restart)
 #
 # This setting defines the width of a tab in cells.
@@ -107,38 +92,32 @@ scrolling:
 # To prevent unexpected behavior in these applications, it's also required to
 # change the `it` value in terminfo when altering this setting.
 tabspaces: 8
-
 # Font configuration (changes require restart)
 font:
   normal:
-    family: Source Code Pro
-
+    family: MesloLGSDZ Nerd Font Mono 
+    # family: Source Code Pro
   size: 6.5
-
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
     x: 0
     y: 0
-
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
   # increasing `y` moves the glyph upwards.
   glyph_offset:
     x: 0
     y: 0
-
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
-
 # Alacritty Monokai Pro theme
 colors:
-  # Default colors
+  # Default color
   primary:
     background: '0x000000'
     foreground: '0xfff1f3'
-
-  # Normal colors
+  # Normal color
   normal:
     black:   '0x2c2525'
     red:     '0xfd6883'
@@ -148,8 +127,7 @@ colors:
     magenta: '0xa8a9eb'
     cyan:    '0x85dacc'
     white:   '0xfff1f3'
-
-  # Bright colors
+  # Bright color
   bright:
     black:   '0x72696a'
     red:     '0xfd6883'
@@ -159,7 +137,6 @@ colors:
     magenta: '0xa8a9eb'
     cyan:    '0x85dacc'
     white:   '0xfff1f3'
-
 # Visual Bell
 #
 # Any time the BEL code is received, Alacritty "rings" the visual bell. Once
@@ -185,22 +162,17 @@ visual_bell:
   animation: EaseOutExpo
   duration: 0
   color: '0xffffff'
-
 # Background opacity
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
 # background_opacity: 1.0
-
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
-
   # When set to `true`, selected text will be copied to the primary clipboard.
   save_to_clipboard: false
-
 # Allow terminal applications to change Alacritty's window title.
 dynamic_title: true
-
 cursor:
   # Cursor style
   #
@@ -209,14 +181,11 @@ cursor:
   #   - _ Underline
   #   - | Beam
   style: Block
-
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
   unfocused_hollow: true
-
 # Live config reload (changes require restart)
 live_config_reload: true
-
 # Shell
 #
 # You can set `shell.program` to the path of your favorite shell, e.g. `/bin/fish`.
@@ -230,34 +199,28 @@ shell:
   program: /bin/fish
 #  args:
 #    - --login
-
 # Startup directory
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
 working_directory: None
-
 # Windows 10 ConPTY backend (Windows only)
 #
 # This will enable better color support and may resolve other issues,
-# however this API and its implementation is still young and so is
+# however this API and its implementation is still young and so i
 # disabled by default, as stability may not be as good as the winpty
 # backend.
 #
 # Alacritty will fall back to the WinPTY automatically if the ConPTY
 # backend cannot be initialized.
 enable_experimental_conpty_backend: false
-
 # Send ESC (\x1b) before characters when alt is pressed.
 alt_send_esc: true
-
 debug:
   # Display the time it takes to redraw each frame.
   render_timer: false
-
   # Keep the log file after quitting Alacritty.
   persistent_logging: false
-
   # Log level
   #
   # Values for `log_level`:
@@ -268,25 +231,20 @@ debug:
   #   - Debug
   #   - Trace
   log_level: Warn
-
   # Print all received window events.
   print_events: false
-
   # Record all characters and escape sequences as test data.
   ref_test: false
-
 mouse:
-  # Click settings
+  # Click setting
   #
   # The `double_click` and `triple_click` settings control the time
   # alacritty should wait for accepting multiple clicks as one double
   # or triple click.
   double_click: { threshold: 300 }
   triple_click: { threshold: 300 }
-
   # If this is `true`, the cursor is temporarily hidden when typing.
   hide_when_typing: false
-
   # url:
     # URL launcher
     #
@@ -302,14 +260,12 @@ mouse:
     #launcher:
     #  program: xdg-open
     #  args: []
-
-    # URL modifiers
+    # URL modifier
     #
     # These are the modifiers that need to be held down for opening URLs when clicking
     # on them. The available modifiers are documented in the key binding section.
     # modifiers: None
-
-# Mouse bindings
+# Mouse binding
 #
 # Mouse bindings are specified as a list of objects, much like the key
 # bindings further below.
@@ -330,8 +286,7 @@ mouse:
 # - `mods` (see key bindings)
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
-
-# Key bindings
+# Key binding
 #
 # Key bindings are specified as a list of objects. For example, this is the
 # default paste binding:
@@ -347,11 +302,11 @@ mouse_bindings:
 #    - Key0-Key9
 #
 #    A full list with available key codes can be found here:
-#    https://docs.rs/glutin/*/glutin/enum.VirtualKeyCode.html#variants
+#    https://docs.rs/glutin/*/glutin/enum.VirtualKeyCode.html#variant
 #
 #    Instead of using the name of the keys, the `key` field also supports using
 #    the scancode of the desired key. Scancodes have to be specified as a
-#    decimal number. This command will allow you to display the hex scancodes
+#    decimal number. This command will allow you to display the hex scancode
 #    for certain keys:
 #
 #       `showkey --scancodes`.
@@ -360,8 +315,8 @@ mouse_bindings:
 #
 # - `chars`: Send a byte sequence to the running application
 #
-#    The `chars` field writes the specified string to the terminal. This makes
-#    it possible to pass escape sequences. To find escape codes for bindings
+#    The `chars` field writes the specified string to the terminal. This make
+#    it possible to pass escape sequences. To find escape codes for binding
 #    like `PageUp` (`"\x1b[5~"`), you can run the command `showkey -a` outside
 #    of tmux. Note that applications use terminfo to map escape sequences back
 #    to keys. It is therefore required to update the terminfo when changing an
@@ -392,7 +347,7 @@ mouse_bindings:
 #   (macOS only):
 #   - ToggleSimpleFullscreen: Enters fullscreen without occupying another space
 #
-# - `command`: Fork and execute a specified command plus arguments
+# - `command`: Fork and execute a specified command plus argument
 #
 #    The `command` field must be a map containing a `program` string and an
 #    `args` array of command line parameter strings. For example:
@@ -400,7 +355,7 @@ mouse_bindings:
 #
 # And optionally:
 #
-# - `mods`: Key modifiers to filter binding actions
+# - `mods`: Key modifiers to filter binding action
 #
 #    - Command
 #    - Control
@@ -413,9 +368,9 @@ mouse_bindings:
 #       `mods: Control|Shift`.
 #    Whitespace and capitalization are relevant and must match the example.
 #
-# - `mode`: Indicate a binding for only specific terminal reported modes
+# - `mode`: Indicate a binding for only specific terminal reported mode
 #
-#    This is mainly used to send applications the correct escape sequences
+#    This is mainly used to send applications the correct escape sequence
 #    when in different modes.
 #
 #    - AppCursor
@@ -439,7 +394,6 @@ key_bindings:
   #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
   #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
-
   # (macOS only)
   #- { key: Key0,   mods: Command,         action: ResetFontSize    }
   #- { key: Equals, mods: Command,         action: IncreaseFontSize }
@@ -453,7 +407,6 @@ key_bindings:
   #- { key: Q,      mods: Command,         action: Quit             }
   #- { key: W,      mods: Command,         action: Quit             }
   #- { key: F,      mods: Command|Control, action: ToggleFullscreen }
-
   - { key: Paste,                   action: Paste                            }
   - { key: Copy,                    action: Copy                             }
   - { key: L,        mods: Control, action: ClearLogNotice                   }
