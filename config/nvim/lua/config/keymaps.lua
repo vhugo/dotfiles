@@ -2,10 +2,9 @@
 local vimp = require('vimp')
 
 -- Open configuration files
-vimp.nnoremap('<leader>,,', '<cmd>vsplit ~/.config/nvim/init.lua<cr>')
-vimp.nnoremap('<leader>,p', '<cmd>vsplit ~/.config/nvim/lua/config/prefs.lua<cr>')
-vimp.nnoremap('<leader>,l', '<cmd>vsplit ~/.config/nvim/lua/config/plugins.lua<cr>')
-vimp.nnoremap('<leader>,o', '<cmd>vsplit ~/.config/nvim/lua/config/plugins-prefs.lua<cr>')
+vimp.nnoremap('<leader>,i', '<cmd>vsplit ~/.config/nvim/init.lua<cr>')
+vimp.nnoremap('<leader>,,', '<cmd>vsplit ~/.config/nvim/lua/config/prefs.lua<cr>')
+vimp.nnoremap('<leader>,p', '<cmd>vsplit ~/.config/nvim/lua/config/plugins.lua<cr>')
 vimp.nnoremap('<leader>,k', '<cmd>vsplit ~/.config/nvim/lua/config/keymaps.lua<cr>')
 
 -- Reload Configuration
@@ -19,14 +18,22 @@ vimp.nnoremap('<leader>!', function()
   vim.cmd('silent wa')
   -- Execute our vimrc lua file again to add back our maps
   dofile(vim.fn.stdpath('config') .. '/init.lua')
-  vim.notify("Reloaded vimrc!", "info", {
-    title = "Neovim Configuration",
+  vim.notify('Reloaded vimrc!', 'info', {
+    title = 'Neovim Configuration',
   })
 end)
 
--- Quick exits
+-- Quick save and exits
+vimp.nnoremap('<leader><esc>', '<cmd>qa<cr>')
 vimp.nnoremap('<leader>qq', '<cmd>q<cr>')
 vimp.nnoremap('<leader>qa', '<cmd>qa<cr>')
+vimp.nnoremap('<leader>wq', '<cmd>wq<cr>')
+vimp.nnoremap('<leader>ww', function()
+  vim.cmd('w')
+  vim.notify(vim.api.nvim_buf_get_name(0) .. ' saved', 'info', {
+    title = 'Saved',
+  })
+end)
 vimp.nnoremap('<leader>11', '<cmd>qa!<cr>')
 
 -- Do not use <Ctrl-c> to break out to normal mode
@@ -57,6 +64,11 @@ vimp.nnoremap('<leader>=', '<cmd>wincmd =<cr>')
 vimp.nnoremap('<leader>-', function()
   vim.cmd('wincmd _')
   vim.cmd('wincmd |')
+end)
+vimp.nnoremap('<tab><tab>', function()
+  local picker = require('window-picker')
+  local picked_window_id = picker.pick_window() or vim.api.nvim_get_current_win()
+  vim.api.nvim_set_current_win(picked_window_id)
 end)
 
 -------------------------------------------------------------------------------
