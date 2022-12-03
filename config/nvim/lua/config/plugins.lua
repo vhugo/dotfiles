@@ -99,15 +99,25 @@ return require('packer').startup(function(use)
         sections = {
           lualine_a = {'mode'},
           lualine_b = {'branch', 'diff', 'diagnostics'},
-          lualine_c = {'filename'},
-          lualine_x = {'g:coc_status', 'encoding', 'fileformat', 'filetype'},
+          lualine_c = {{
+            'filename',
+            file_status = true,
+            newfile_status = true,
+            path = 1,
+          }},
+          lualine_x = {'encoding', 'fileformat', 'filetype'},
           lualine_y = {'progress'},
           lualine_z = {'location'}
         },
         inactive_sections = {
           lualine_a = {},
           lualine_b = {},
-          lualine_c = {'filename'},
+          lualine_c = {{
+            'filename',
+            file_status = true,
+            newfile_status = true,
+            path = 1,
+          }},
           lualine_x = {'location'},
           lualine_y = {},
           lualine_z = {}
@@ -142,7 +152,31 @@ return require('packer').startup(function(use)
   -- Telescope and its dependencies is a must have
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
-  use 'nvim-telescope/telescope.nvim'
+  use 'nvim-telescope/telescope-ui-select.nvim'
+  use {
+    'nvim-telescope/telescope.nvim',
+    config = function()
+      require("telescope").setup {
+        defaults = {
+          layout_strategy = 'vertical',
+          layout_config = {
+            height = 0.90,
+            preview_height = 0.70,
+            prompt_position = 'top',
+            mirror = true,
+          },
+        },
+        extensions = {
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown {
+              -- even more opts
+            }
+          }
+        }
+      }
+      require("telescope").load_extension("ui-select")
+    end,
+  }
 
   -- Treesitter improve integration with neovim interface
   use {
@@ -163,18 +197,46 @@ return require('packer').startup(function(use)
   use {
     'neovim/nvim-lspconfig',
     config=function()
+      local tb = require('telescope.builtin')
+
       require('lspconfig').gopls.setup{
         capabilities = capabilities,
         on_attach = function()
           vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
-          vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
-          vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, {buffer=0})
-          vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
-          vim.keymap.set("n", "gr", vim.lsp.buf.references, {buffer=0})
+
+          -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
+          vim.keymap.set("n", "gd", function()
+            tb.lsp_definitions()
+          end, {buffer = 0})
+
+          -- vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, {buffer=0})
+          vim.keymap.set("n", "gT", function()
+            tb.lsp_type_definitions()
+          end, {buffer = 0})
+
+          -- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
+          vim.keymap.set("n", "gi", function()
+            tb.lsp_implementations({
+              show_line = true,
+              fname_width = 50,
+              jump_type = 'tab',
+	          })
+          end, {buffer = 0})
+
+          -- vim.keymap.set("n", "gr", vim.lsp.buf.references, {buffer=0})
+          vim.keymap.set("n", "gr", function()
+            tb.lsp_references()
+          end, {buffer = 0})
+
+          -- DIAGNOSTICS
+          vim.keymap.set("n", "di", function()
+            vim.cmd('Telescope diagnostics')
+          end, {buffer = 0})
           vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, {buffer=0})
           vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, {buffer=0})
+
           vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer=0})
-          vim.keymap.set("n", "<leader>cr", vim.lsp.buf.code_action, {buffer=0})
+          vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer=0})
         end,
       }
     end

@@ -18,6 +18,9 @@ vimp.nnoremap('<leader>!', function()
   vim.cmd('silent wa')
   -- Execute our vimrc lua file again to add back our maps
   dofile(vim.fn.stdpath('config') .. '/init.lua')
+  -- Packer needs to recompile
+  vim.cmd('PackerCompile')
+  -- Notify it's all done
   vim.notify('Reloaded vimrc!', 'info', {
     title = 'Neovim Configuration',
   })
@@ -149,6 +152,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -------------------------------------------------------------------------------
 -- WRITING
 -------------------------------------------------------------------------------
+vimp.nnoremap('<leader>sp', '<cmd>Telescope spell_suggest<cr>')
 vimp.nnoremap('<leader>[','i- [ ] ')
 -- :nnoremap <F5> "=strftime("%Y.%m.%d %H:%M %a")<CR>P
 -- :inoremap <F5> <C-R>=strftime("%Y.%m.%d %H:%M %a")<CR>
