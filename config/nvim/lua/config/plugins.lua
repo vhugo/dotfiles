@@ -147,7 +147,7 @@ return require('packer').startup(function(use)
 -----------------------------------------------
 
   -- gitgutter to display lines changed
-  use {'airblade/vim-gitgutter', cmd={'GitGutterEnable'}}
+  use {'airblade/vim-gitgutter', cmd='GitGutterEnable'}
 
   -- Telescope and its dependencies is a must have
   use 'nvim-lua/popup.nvim'
@@ -158,6 +158,7 @@ return require('packer').startup(function(use)
     config = function()
       require("telescope").setup {
         defaults = {
+          initial_mode = "normal",
           layout_strategy = 'vertical',
           layout_config = {
             height = 0.90,
@@ -206,18 +207,21 @@ return require('packer').startup(function(use)
 
           -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
           vim.keymap.set("n", "gd", function()
-            tb.lsp_definitions()
+            tb.lsp_definitions({
+              fname_width = 50,
+	          })
           end, {buffer = 0})
 
           -- vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, {buffer=0})
           vim.keymap.set("n", "gT", function()
-            tb.lsp_type_definitions()
+            tb.lsp_type_definitions({
+              fname_width = 50,
+	          })
           end, {buffer = 0})
 
           -- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
           vim.keymap.set("n", "gi", function()
             tb.lsp_implementations({
-              show_line = true,
               fname_width = 50,
               jump_type = 'tab',
 	          })
@@ -225,12 +229,14 @@ return require('packer').startup(function(use)
 
           -- vim.keymap.set("n", "gr", vim.lsp.buf.references, {buffer=0})
           vim.keymap.set("n", "gr", function()
-            tb.lsp_references()
+            tb.lsp_references({
+              fname_width = 50,
+	          })
           end, {buffer = 0})
 
           -- DIAGNOSTICS
           vim.keymap.set("n", "di", function()
-            vim.cmd('Telescope diagnostics')
+            tb.diagnostics()
           end, {buffer = 0})
           vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, {buffer=0})
           vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, {buffer=0})
