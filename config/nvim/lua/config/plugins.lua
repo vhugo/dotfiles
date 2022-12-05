@@ -2,11 +2,6 @@
 -- PLUGIN INSTALL
 -------------------------------------------------------------------------------
 
--- require "paq" {
---     "savq/paq-nvim";
--- }
-
-
 -- vim.cmd 'packadd packer.nvim'
 vim.opt.completeopt={"menu","menuone","noselect"}
 
@@ -105,7 +100,8 @@ return require('packer').startup(function(use)
             newfile_status = true,
             path = 1,
           }},
-          lualine_x = {'encoding', 'fileformat', 'filetype'},
+          lualine_x = {'filetype'},
+          -- lualine_x = {'encoding', 'fileformat', 'filetype'},
           lualine_y = {'progress'},
           lualine_z = {'location'}
         },
@@ -146,9 +142,6 @@ return require('packer').startup(function(use)
 -- IDE - Integrated Development Environment
 -----------------------------------------------
 
-  -- gitgutter to display lines changed
-  use {'airblade/vim-gitgutter', cmd='GitGutterEnable'}
-
   -- Telescope and its dependencies is a must have
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
@@ -156,16 +149,25 @@ return require('packer').startup(function(use)
   use {
     'nvim-telescope/telescope.nvim',
     config = function()
+      local inserter_mode = {
+        initial_mode = "insert",
+        prompt_prefix = "🔍",
+      }
+
       require("telescope").setup {
         defaults = {
           initial_mode = "normal",
           layout_strategy = 'vertical',
           layout_config = {
             height = 0.90,
-            preview_height = 0.70,
+            -- preview_height = 0.70,
             prompt_position = 'top',
             mirror = true,
           },
+        },
+        pickers = {
+          live_grep = inserter_mode,
+          find_files = inserter_mode,
         },
         extensions = {
           ["ui-select"] = {
@@ -192,62 +194,6 @@ return require('packer').startup(function(use)
       }
     end
   };
-
-  -- LSPConfig takes care of configuration with language server protocol to allow
-  -- most important interation with the code.
-  use {
-    'neovim/nvim-lspconfig',
-    config=function()
-      local tb = require('telescope.builtin')
-
-      require('lspconfig').gopls.setup{
-        capabilities = capabilities,
-        on_attach = function()
-          vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
-
-          -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
-          vim.keymap.set("n", "gd", function()
-            tb.lsp_definitions({
-              fname_width = 50,
-	          })
-          end, {buffer = 0})
-
-          -- vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, {buffer=0})
-          vim.keymap.set("n", "gT", function()
-            tb.lsp_type_definitions({
-              fname_width = 50,
-	          })
-          end, {buffer = 0})
-
-          -- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
-          vim.keymap.set("n", "gi", function()
-            tb.lsp_implementations({
-              fname_width = 50,
-              jump_type = 'tab',
-	          })
-          end, {buffer = 0})
-
-          -- vim.keymap.set("n", "gr", vim.lsp.buf.references, {buffer=0})
-          vim.keymap.set("n", "gr", function()
-            tb.lsp_references({
-              fname_width = 50,
-	          })
-          end, {buffer = 0})
-
-          -- DIAGNOSTICS
-          vim.keymap.set("n", "di", function()
-            tb.diagnostics()
-          end, {buffer = 0})
-          vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, {buffer=0})
-          vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, {buffer=0})
-
-          vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer=0})
-          vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer=0})
-        end,
-      }
-    end
-  }
-  use 'onsails/lspkind.nvim'
 
   -- nvim-tree - a file explorer
   use 'nvim-tree/nvim-web-devicons'
@@ -362,6 +308,7 @@ return require('packer').startup(function(use)
   -- Luasnip - Snippets funcionality
   use {
     'L3MON4D3/LuaSnip',
+    tag = "v1.*",
     config=function()
       local ls = require 'luasnip'
       local types = require 'luasnip.util.types'
@@ -375,6 +322,7 @@ return require('packer').startup(function(use)
 
         -- Autosnippets:
         enable_autosnippets = true,
+
         ext_opts = {
           [types.choiceNode] = {
             active = {
@@ -386,20 +334,89 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- LSPConfig takes care of configuration with language server protocol to allow
+  -- most important interation with the code.
+  use 'neovim/nvim-lspconfig'
+  use 'onsails/lspkind.nvim'
+  use 'ray-x/lsp_signature.nvim'
+
   -- nvim-cmp - autocompletion for nvim
   use {
     'hrsh7th/nvim-cmp',
     config=function()
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
-      local cmp = require'cmp'
-      local lspkind = require('lspkind')
+      -- Telescope builtin alias
+      local tb = require('telescope.builtin')
 
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+      -- Setup of lscpconfig for golang
+      require('lspconfig').gopls.setup{
+        capabilities = capabilities,
+        on_attach = function(_, bufnr)
+
+          -- show function signature while typing it
+          require('lsp_signature').on_attach(signature_setup, bufnr)
+
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
+
+          -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
+          vim.keymap.set("n", "gd", function()
+            tb.lsp_definitions({
+              fname_width = 50,
+	          })
+          end, {buffer = 0})
+
+          -- vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, {buffer=0})
+          vim.keymap.set("n", "gT", function()
+            tb.lsp_type_definitions({
+              fname_width = 50,
+	          })
+          end, {buffer = 0})
+
+          -- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
+          vim.keymap.set("n", "gi", function()
+            tb.lsp_implementations({
+              fname_width = 50,
+              jump_type = 'tab',
+	          })
+          end, {buffer = 0})
+
+          -- vim.keymap.set("n", "gr", vim.lsp.buf.references, {buffer=0})
+          vim.keymap.set("n", "gr", function()
+            tb.lsp_references({
+              fname_width = 50,
+	          })
+          end, {buffer = 0})
+
+          -- DIAGNOSTICS
+          vim.keymap.set("n", "di", function()
+            tb.diagnostics()
+          end, {buffer = 0})
+          vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, {buffer=0})
+          vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, {buffer=0})
+
+          vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer=0})
+          vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer=0})
+        end,
+      }
+
+      -- language server for python
+      require'lspconfig'.pyright.setup{
+        capabilities = capabilities,
+      }
+
+      -- lspkind setup
+      local lspkind = require('lspkind')
       lspkind.init()
 
+      -- luasnip setup
+      local luasnip = require 'luasnip'
+
+      local cmp = require'cmp'
       cmp.setup({
         snippet = {
           expand = function(args)
-            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+            luasnip.lsp_expand(args.body) -- For `luasnip` users.
           end,
         },
         window = {
@@ -428,9 +445,9 @@ return require('packer').startup(function(use)
         --   },
         -- },
         sources = {
+          { name = 'luasnip' }, -- For luasnip users.
           { name = 'nvim_lsp' },
           { name = 'nvim_lua' },
-          { name = 'luasnip' }, -- For luasnip users.
           { name = 'path' },
           { name = 'dictionary', keyword_length = 3 },
           { name = 'buffer', keyword_length = 5 },
@@ -446,9 +463,6 @@ return require('packer').startup(function(use)
               luasnip = '[snip]',
               dictionary = '[dict]',
             },
-            -- mode = 'symbol', -- show only symbol annotations
-            -- maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-            -- ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
           })
         },
         experimental = {
@@ -458,6 +472,7 @@ return require('packer').startup(function(use)
       })
     end
   }
+  use 'saadparwaiz1/cmp_luasnip'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
@@ -474,85 +489,131 @@ return require('packer').startup(function(use)
           -- 	nl = "~/.config/nvim/spell/nl.dict",
           -- },
         },
-        -- The following are default values.
         exact = -1,
         max_items = 5,
         first_case_insensitive = true,
-        -- document = false,
-        -- document_command = "wn %s -over",
-        -- async = false,
-        -- capacity = 5,
-        -- debug = false,
       })
     end
   }
-  use 'saadparwaiz1/cmp_luasnip'
+
+  -- gitsigns to display lines changed
+  use {
+    'lewis6991/gitsigns.nvim',
+    tag = 'release',
+    config = function()
+      require('gitsigns').setup {
+        signs = {
+          add          = { hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'    },
+          change       = { hl = 'GitSignsChange', text = '║', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn' },
+          delete       = { hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn' },
+          topdelete    = { hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn' },
+          changedelete = { hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn' },
+          untracked    = { hl = 'GitSignsAdd'   , text = '┆', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'    },
+        },
+      }
+      -- require('gitsigns').setup()
+    end
+  }
 
   -- nvim-coverage
-  use 'andythigpen/nvim-coverage'
+  use {
+    "andythigpen/nvim-coverage",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+       require("coverage").setup({
+        commands = true, -- create commands
+        highlights = {
+          covered = { fg = "#C3E88D", bg = "NONE" },   -- supports style, fg, bg, sp (see :h highlight-gui)
+          uncovered = { fg = "#F07178" },
+        },
+        signs = {
+          -- use your own highlight groups or text markers
+          covered = { hl = "CoverageCovered", text = "█" }, -- ▎
+          uncovered = { hl = "CoverageUncovered", text = "█" }, -- █
+        },
+        summary = {
+          min_coverage = 80.0,      -- minimum coverage threshold (used for highlighting)
+        },
+        lang = {
+          go = {
+            coverage_file = vim.fn.getcwd() .. '/coverage.out',
+          },
+        },
+      })
+    end,
+  }
 
   -- nvim-test
   use 'klen/nvim-test'
 
-  -- -- go.vim
+  -- go.vim
+  -- use 'ray-x/guihua.lua'
   -- use {
   --   'ray-x/go.nvim',
   --   config=function()
   --     vim.api.nvim_create_autocmd("BufWritePre", {
   --       pattern = "*.go",
   --       callback = function()
-  --       require('go.format').goimport()
+  --         require('go.format').goimport()
   --       end,
   --       group = format_sync_grp,
   --     })
-  --     require('go').setup()
-  --   end
-  -- }
-
-  -- -- nvim-go - minial Go development plugin
-  -- use {
-  --   'crispgm/nvim-go',
-  --   run = function() vim.cmd(':GoUpdateBinaries') end,
-  --   config=function()
   --     require('go').setup({
-  --         -- notify: use nvim-notify
-  --         notify = true,
-  --         -- auto commands
-  --         auto_format = true,
-  --         auto_lint = true,
-  --         -- linters: revive, errcheck, staticcheck, golangci-lint
-  --         -- linter = 'revive',
-  --         -- linter_flags: e.g., {revive = {'-config', '/path/to/config.yml'}}
-  --         linter_flags = {revive = {'-config', '~/.go-revive.toml'}},
-  --         -- lint_prompt_style: qf (quickfix), vt (virtual text)
-  --         lint_prompt_style = 'qf',
-  --         -- formatter: goimports, gofmt, gofumpt, lsp
-  --         -- formatter = 'goimports',
-  --         -- maintain cursor position after formatting loaded buffer
-  --         maintain_cursor_pos = false,
-  --         -- test flags: -count=1 will disable cache
-  --         test_flags = {'-v'},
-  --         test_timeout = '30s',
-  --         test_env = {},
-  --         -- show test result with popup window
-  --         test_popup = true,
-  --         test_popup_auto_leave = false,
-  --         test_popup_width = 80,
-  --         test_popup_height = 10,
-  --         -- test open
-  --         test_open_cmd = 'edit',
-  --         -- struct tags
-  --         tags_name = 'json',
-  --         tags_options = {'json=omitempty'},
-  --         tags_transform = 'snakecase',
-  --         tags_flags = {'-skip-unexported'},
-  --         -- quick type
-  --         quick_type_flags = {'--just-types'},
+  --       luasnip = true,
+  --       run_in_floaterm = true,
   --     })
   --   end
   -- }
 
-  -- -- vim-go - Go development plugin
+  -- nvim-go - minial Go development plugin
+  use {
+    'crispgm/nvim-go',
+    run = function() vim.cmd(':GoUpdateBinaries') end,
+    config=function()
+      require('go').setup({
+          -- notify: use nvim-notify
+          notify = true,
+          -- auto commands
+          auto_format = true,
+          auto_lint = true,
+          -- linters: revive, errcheck, staticcheck, golangci-lint
+          -- linter = 'revive',
+          linter = 'golangci-lint',
+          -- linter_flags: e.g., {revive = {'-config', '/path/to/config.yml'}}
+          -- linter_flags = {revive = {'-config', '~/.go-revive.toml'}},
+          -- lint_prompt_style: qf (quickfix), vt (virtual text)
+          lint_prompt_style = 'qf',
+          -- formatter: goimports, gofmt, gofumpt, lsp
+          -- formatter = 'goimports',
+          -- maintain cursor position after formatting loaded buffer
+          maintain_cursor_pos = false,
+          -- test flags: -count=1 will disable cache
+          test_flags = {
+              '-v',
+              '-count=1',
+              '-coverprofile=' .. vim.fn.getcwd() .. '/coverage.out',
+            },
+          test_timeout = '30s',
+          test_env = {},
+          -- show test result with popup window
+          test_popup = true,
+          test_popup_auto_leave = true,
+          test_popup_width = 80,
+          test_popup_height = 10,
+          -- test open
+          test_open_cmd = 'edit',
+          -- struct tags
+          tags_name = 'json',
+          tags_options = {'json=omitempty'},
+          tags_transform = 'snakecase',
+          tags_flags = {'-skip-unexported'},
+          -- quick type
+          quick_type_flags = {'--just-types'},
+      })
+    end
+  }
+
+  -- vim-go - Go development plugin
   -- use {'fatih/vim-go', run=function() vim.cmd(':GoUpdateBinaries') end}
 
   -- Surround.vim is all about 'surroundings': parentheses, brackets, quotes, XML

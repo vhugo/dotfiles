@@ -27,8 +27,9 @@ vimp.nnoremap('<leader>!', function()
 end)
 
 -- Quick save and exits
-vimp.nnoremap('<leader><esc>', '<cmd>qa<cr>')
+-- vimp.nnoremap('<leader><esc>', '<cmd>qa<cr>')
 vimp.nnoremap('<leader>qq', '<cmd>q<cr>')
+vimp.nnoremap('qq', '<cmd>q<cr>')
 vimp.nnoremap('<leader>qa', '<cmd>qa<cr>')
 vimp.nnoremap('<leader>wq', '<cmd>wq<cr>')
 vimp.nnoremap('<leader>ww', function()
@@ -121,7 +122,10 @@ vim.keymap.set({'i','s'}, '<C-l>', function()
   end
 end, { silent = true })
 
-vimp.nnoremap("<leader><leader>s", "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<cr>")
+vimp.nnoremap("<leader><leader>s", function()
+  vim.cmd("source ~/.config/nvim/after/plugin/luasnip.lua")
+  vim.notify("Snippets reloaded.")
+end)
 
 -------------------------------------------------------------------------------
 -- GIT BLAME LINE
@@ -134,16 +138,14 @@ vimp.nnoremap('<leader>b', '<cmd>ToggleBlameLine<cr>')
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {"go"},
   callback = function()
-    vim.keymap.set('n','<leader>gt', '<cmd>GoTestFunc<cr>')
-    vim.keymap.set('n','<leader>gc', '<cmd>GoCoverageToggle<cr>')
+    vim.keymap.set('n','<leader>cc', '<cmd>CoverageToggle<cr>')
+    vim.keymap.set('n','<leader>cs', '<cmd>CoverageSummary<cr>')
+    vim.keymap.set('n','<leader>gt', '<cmd>GoTestFunc<cr><cmd>Coverage<cr>')
     vim.keymap.set('n','<leader>tt', function()
       vim.cmd('GoTestFunc')
-      vim.cmd('wincmd h')
-      vim.cmd('GoCoverageClear')
-      vim.cmd('GoCoverage')
-      vim.cmd('wincmd l')
+      vim.cmd('Coverage')
     end)
-    vim.keymap.set('n','<leader>ot', '<cmd>:wincmd v<cr>:e %:p:r_test.go<cr><esc>',{
+    vim.keymap.set('n','<leader>ot', '<cmd>:wincmd v<cr>:e %:p:r_test.go<cr>',{
       silent = true,
     })
   end,

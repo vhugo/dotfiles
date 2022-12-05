@@ -18,13 +18,31 @@ local i = ls.insert_node
 -- rep(<position>)
 local rep = require('luasnip.extras').rep
 
-ls.snippets = {
-  all = {
-    -- available in any filetype
-    ls.parser.parse_snippet("expand", "-- this is what was expanded!"),
-  },
-  lua = {
-    -- Lua specific snippets go here.
-    s('req', fmt("local {} = require('{}')", { i(1,"default"), rep(1) })),
-  },
-}
+ls.add_snippets('all', {
+  ls.parser.parse_snippet('expand', '-- this is what was expanded!'),
+})
+
+ls.add_snippets('lua', {
+  s('req', fmt("local {} = require('{}')", { i(1,'default'), rep(1) })),
+})
+
+ls.add_snippets('go', {
+  s('tdd', fmt([[
+	for _, tc := range []struct {
+		name string
+	}{
+		{
+			name: "<>",
+		},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+      <>
+		})
+	}
+  ]], {
+    i(1, "empty"), i(2),
+  }, {
+    delimiters = "<>",
+    dedent = false,
+  }))
+})
