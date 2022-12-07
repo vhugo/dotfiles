@@ -148,6 +148,39 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set('n','<leader>ot', '<cmd>:wincmd v<cr>:e %:p:r_test.go<cr>',{
       silent = true,
     })
+
+    -- DEBUGGING
+    vim.keymap.set('n', '<leader>BB', function()
+      require('dap-go').debug_test()
+      require("dapui").open()
+      -- local widgets = require('dap.ui.widgets')
+      -- local my_sidebar = widgets.sidebar(widgets.scopes)
+      -- my_sidebar.open()
+    end)
+
+    vim.keymap.set('n', '<leader>B_', function()
+      require('dap').step_into()
+    end)
+
+    vim.keymap.set('n', '<leader>B+', function()
+      require('dap').step_over()
+    end)
+
+    vim.keymap.set('n', '<leader>BO', function()
+      require('dap').step_out()
+    end)
+
+    vim.keymap.set('n', '<leader>BK', function()
+      require('dap').close()
+    end)
+
+    vim.keymap.set('n', '<leader>BP', function()
+      vim.cmd('DapToggleBreakpoint')
+    end)
+
+    vim.keymap.set('n', '<leader>B*', function()
+      require("dapui").toggle()
+    end)
   end,
 })
 

@@ -14,5 +14,3 @@ set -gx SHELL /bin/fish
 set -gx TERMINAL alacritty
 set -g fish_key_bindings fish_vi_key_bindings
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/vhugo/installation/google-cloud-sdk/path.fish.inc' ]; . '/home/vhugo/installation/google-cloud-sdk/path.fish.inc'; end
