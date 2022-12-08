@@ -298,15 +298,15 @@ bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: "
-set $ws2 "2: "
-set $ws3 "3: "
-set $ws4 "4: "
-set $ws5 "5: "
+set $ws2 "2: "
+set $ws3 "3: "
+set $ws4 "4: "
+set $ws5 "5: "
 set $ws6 "6: "
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws7 "7: "
+set $ws8 "8: "
+set $ws9 "9: "
+set $ws10 "10: "
 
 # use workspaces on different displays:
 # where you have to replace VGA-0/HDMI-0 with the names for your displays
@@ -318,13 +318,12 @@ set $ws10 "10"
 #workspace $ws5 output HDMI-0
 
 # bind program to workspace and focus to them on startup:
-assign [class="Alacritty"] $ws1
-assign [class="(?i)brave"] $ws2
-assign [class="(?i)firefox"] $ws2
-assign [class="(?i)vivaldi-stable"] $ws2
-assign [class="obsidian"] $ws3
-assign [class="Thunar"] $ws4
-assign [class="(?i)slack"] $ws5
+# assign [class="Alacritty"] $ws1
+assign [class="(?i)brave"] $ws8
+assign [class="(?i)firefox"] $ws10
+assign [class="(?i)vivaldi-stable"] $ws10
+assign [class="obsidian"] $ws5
+assign [class="(?i)slack"] $ws9
 assign [class="(?i)gimp-2.1"] $ws6
 
 # automatic set focus new window if it opens on another workspace then the current:
