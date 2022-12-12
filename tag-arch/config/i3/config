@@ -196,6 +196,9 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to update i3)
 bindsym $mod+Shift+r restart
 
+# CMUS
+bindsym $mod+Shift+p exec cmus-remote -u
+
 # keybinding in fancy rofi (automated):
 bindsym F1 exec ~/.config/i3/scripts/keyhint-2
 # alternative
@@ -287,7 +290,7 @@ bindsym $mod+Ctrl+5 exec scrot ~/Pictures/%Y-%m-%d-%T-screenshot.png && notify-s
 bindsym $mod+Ctrl+4 --release exec import ~/Pictures/screenshot.png && xclip -selection clipboard -t image/png -i ~/Pictures/screenshot.png && notify-send "Screenshot saved to clipboard"
 
 # Power Profiles menu switcher (rofi)
-bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
+# bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 
 ##########################################
 # configuration for workspace behaviour: #
