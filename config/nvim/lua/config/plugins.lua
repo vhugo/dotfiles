@@ -403,6 +403,52 @@ return require('packer').startup(function(use)
       -- language server for python
       require'lspconfig'.pyright.setup{
         capabilities = capabilities,
+        on_attach = function(_, bufnr)
+
+          -- show function signature while typing it
+          require('lsp_signature').on_attach(signature_setup, bufnr)
+
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
+
+          -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer=0})
+          vim.keymap.set("n", "gd", function()
+            tb.lsp_definitions({
+              fname_width = 50,
+	          })
+          end, {buffer = 0})
+
+          -- vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, {buffer=0})
+          vim.keymap.set("n", "gT", function()
+            tb.lsp_type_definitions({
+              fname_width = 50,
+	          })
+          end, {buffer = 0})
+
+          -- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer=0})
+          vim.keymap.set("n", "gi", function()
+            tb.lsp_implementations({
+              fname_width = 50,
+              jump_type = 'tab',
+	          })
+          end, {buffer = 0})
+
+          -- vim.keymap.set("n", "gr", vim.lsp.buf.references, {buffer=0})
+          vim.keymap.set("n", "gr", function()
+            tb.lsp_references({
+              fname_width = 50,
+	          })
+          end, {buffer = 0})
+
+          -- DIAGNOSTICS
+          vim.keymap.set("n", "__", function()
+            tb.diagnostics()
+          end, {buffer = 0})
+          vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, {buffer=0})
+          vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, {buffer=0})
+
+          vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer=0})
+          vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer=0})
+        end
       }
 
       -- lspkind setup
