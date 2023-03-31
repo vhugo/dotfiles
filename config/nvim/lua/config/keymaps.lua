@@ -56,6 +56,14 @@ vimp.nnoremap('<leader>te', function()
   vim.cmd('startinsert') -- enable insert mode
 end)
 
+-- Copy selected text to the xclipboard
+vimp.vnoremap('<C-c>', function()
+  vim.cmd("'<,'>w !xclip -selection clipboard", {
+    nowait=true,
+    silent = true,
+  })
+end)
+
 -- Tabs
 for tab_number=1,6 do
   vimp.nnoremap('<C-w>'..tab_number, '<cmd>tabnext '..tab_number..'<cr>')
@@ -183,6 +191,64 @@ vim.api.nvim_create_autocmd("FileType", {
     end)
   end,
 })
+
+-------------------------------------------------------------------------------
+-- Python
+-------------------------------------------------------------------------------
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {"python"},
+  callback = function()
+    vim.keymap.set('n','<leader>cc', '<cmd>CoverageToggle<cr>')
+    vim.keymap.set('n','<leader>cs', '<cmd>CoverageSummary<cr>')
+    vim.keymap.set('n','<leader>gt', function()
+      require('dap-python').test_method()
+    end)
+    vim.keymap.set('n','<leader>tt', function()
+      require('dap-python').test_method()
+      vim.cmd('Coverage')
+    end)
+
+    -- DEBUGGING
+    vim.keymap.set('n', '<leader>BB', function()
+      require('dap-python').test_method()
+      require("dapui").open()
+    end)
+
+    vim.keymap.set('n', '<leader>B_', function()
+      require('dap').step_into()
+    end)
+
+    vim.keymap.set('n', '<leader>B+', function()
+      require('dap').step_over()
+    end)
+
+    vim.keymap.set('n', '<leader>BO', function()
+      require('dap').step_out()
+    end)
+
+    vim.keymap.set('n', '<leader>BK', function()
+      require('dap').close()
+    end)
+
+    vim.keymap.set('n', '<leader>BP', function()
+      vim.cmd('DapToggleBreakpoint')
+    end)
+
+    vim.keymap.set('n', '<leader>B*', function()
+      require("dapui").toggle()
+    end)
+  end,
+})
+
+-------------------------------------------------------------------------------
+-- JSON
+-------------------------------------------------------------------------------
+-- Formatting JSON
+vimp.nnoremap('<leader>jj', function()
+  vim.cmd('%!jq .')
+  vim.cmd('set syntax=json')
+end)
 
 -------------------------------------------------------------------------------
 -- WRITING

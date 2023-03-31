@@ -215,7 +215,9 @@ return require('packer').startup(function(use)
           group_empty = true,
         },
         filters = {
-          dotfiles = true,
+          dotfiles = false,
+          custom = {},
+          exclude = {},
         },
       })
     end
@@ -543,6 +545,12 @@ return require('packer').startup(function(use)
   }
 
   use 'mfussenegger/nvim-dap'
+  use {
+    'mfussenegger/nvim-dap-python',
+    config = function()
+      require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
+    end
+  }
   use {
     'rcarriga/nvim-dap-ui',
     requires = {'mfussenegger/nvim-dap'},
