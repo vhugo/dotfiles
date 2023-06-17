@@ -36,6 +36,11 @@ vim.o.vb = true
 vim.g.nobackup = true
 vim.g.nowritebackup = true
 vim.g.noswapfile = true
+vim.g.swapfile = false
+vim.o.nobackup = true
+vim.o.nowritebackup = true
+vim.o.noswapfile = true
+vim.o.swapfile = false
 
 -- Persistent undo
 local undodir = vim.fn.expand('~/.undo-nvim')
